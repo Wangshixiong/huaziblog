@@ -1,6 +1,5 @@
 ---
 import { SITE } from '@/config';
-import AstroLogo from './AstroLogo.astro';
 import HeaderRight from './HeaderRight.astro';
 import { getLangFromUrl, useTranslations, useLocalizedPath } from '../../i18n/utils';
 
@@ -16,7 +15,7 @@ const translatePath = useLocalizedPath(lang);
   >
     <div class='logo flex content-logo'>
       <a href={translatePath('/')} class='logo-image' aria-label={t('site.title')}>
-        <AstroLogo size={40} class='pswp-ignore' />
+        <img src={SITE.icon} alt={t('site.title')} width='40' height='40' class='site-avatar pswp-ignore' />
       </a>
       <a href={translatePath('/')}>
         <h1 class='text-gray-800 dark:text-gray-200'>{t('site.title')}</h1>
@@ -62,7 +61,15 @@ const translatePath = useLocalizedPath(lang);
   }
 
   .logo .logo-image {
-    margin-top: -14px;
+    margin-top: -4px;
+  }
+
+  .site-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    object-fit: cover;
+    display: block;
   }
 
   .logo h1 {

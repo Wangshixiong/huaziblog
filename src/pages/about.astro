@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header/Header.astro";
+import { SITE } from "@/config";
+---
+
+<BaseLayout title={`${SITE.title} | 关于`} description={SITE.description} pageURL={`${SITE.homePage}/about`}>
+  <Header />
+  <main class="mx-auto mb-16 xl:max-w-7xl w-full lg:max-w-5xl md:max-w-2xl max-w-xl box-border md:px-0 sm:px-3 px-4">
+    <article class="markdown-body heti bg-white/90 dark:bg-gray-900/70 rounded-2xl shadow-sm px-6 py-8 md:px-10 md:py-10 mt-4">
+      <h1>关于我</h1>
+      <p>你好，我是 <strong>吏部侍郎</strong>。</p>
+      <p>
+        一名对技术和人性充满好奇的 AI 产品经理，也是「云间书吏」公众号的主理人。
+      </p>
+      <p>
+        我热衷于探索 AI 产品的设计、落地与价值实现，并乐于把这些过程中的心得与思考记录下来。取名「吏部侍郎」，是希望以产品经理的视角，如古代官吏般审慎洞察需求、梳理逻辑，并认真记录这个时代的数字变迁。
+      </p>
+      <blockquote>
+        <p>遇事不决，可问春风。</p>
+      </blockquote>
+      <h2>找到我</h2>
+      <ul>
+        <li>
+          GitHub：<a href="https://github.com/Wangshixiong" target="_blank" rel="noreferrer">@Wangshixiong</a>
+        </li>
+        <li>微信公众号：云间书吏</li>
+        <li>个人微信：扫码添加好友，期待交流</li>
+      </ul>
+      <p class="flex justify-center">
+        <img
+          src="https://wenhua-image.oss-cn-beijing.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/wechat2.jpg"
+          alt="微信二维码"
+          width="220"
+        />
+      </p>
+    </article>
+  </main>
+</BaseLayout>

@@ -67,8 +67,14 @@ function defaultLayoutPlugin() {
       frontmatter.image = imageElement.getAttribute("src");
     }
 
-    if (tree.children[1]?.children[1]?.value) {
-      frontmatter.description = tree.children[1].children[1].value;
+    const descriptionCandidate =
+      tree.children?.find?.((child) => child?.type === "paragraph")?.children
+        ?.find?.((child) => child?.type === "text")?.value ??
+      tree.children?.find?.((child) => child?.children?.[1]?.value)?.children?.[1]
+        ?.value;
+
+    if (descriptionCandidate) {
+      frontmatter.description = descriptionCandidate;
     }
 
     frontmatter.description = frontmatter.description || SITE.description;

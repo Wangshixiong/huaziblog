@@ -14,6 +14,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+dev-server.out.log
+dev-server.err.log
+dev80.out.log
+dev80.err.log
+dist-server.out.log
+dist-server.err.log
+proxy80.out.log
+proxy80.err.log
+edge-shot.out.log
 
 # Environment variables
 .env
@@ -35,3 +44,7 @@ CLAUDE.md
 journal/
 .claude/settings.local.json
 .claude/
+.migration-backup/
+.edge-*/
+*.png
+*.html
