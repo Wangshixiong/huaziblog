@@ -185,7 +185,7 @@ const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
 
       .layout {
         overflow: initial;
-        grid-template-columns: 288px minmax(0, var(--max-width));
+        grid-template-columns: 360px minmax(0, var(--max-width));
         gap: 0;
       }
 
@@ -202,7 +202,7 @@ const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
     }
     @media (min-width: 1152px) {
       .layout {
-        grid-template-columns: 320px minmax(0, var(--max-width)) 208px;
+        grid-template-columns: 384px minmax(0, var(--max-width)) 208px;
         padding-left: 0;
         padding-right: 0;
         margin: 0 auto;
@@ -344,7 +344,7 @@ const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
             {nextUrl ? <a href={translatePath(nextUrl)}>{lang === 'en' ? 'Next' : '下一篇'} |</a> : null}
             {prevUrl ? <a href={translatePath(prevUrl)}>{lang === 'en' ? 'Prev' : '上一篇'} |</a> : null}
             <a href={translatePath('/')}>{lang === 'en' ? 'Home' : '去首页'} |</a>
-            <a href={`https://twitter.com/${SITE.twitterId}`} target='_blank' title='Follow'>Twitter</a>
+            <a href='/about'>{lang === 'en' ? 'About' : '关于我'}</a>
             <a href={`https://github.com/${SITE.repo}`} title='Star' target='_blank' class='lg:inline-block hidden'> | Github</a>
             <a href='/rss.xml' title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
           </div>

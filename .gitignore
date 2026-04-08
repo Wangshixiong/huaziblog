@@ -48,3 +48,4 @@ journal/
 .edge-*/
 *.png
 *.html
+scripts/local-preview-proxy.cjs

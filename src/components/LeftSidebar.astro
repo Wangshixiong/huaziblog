@@ -39,7 +39,7 @@ const sidebarSections = allPosts.reduce((sections, post, index) => {
   <div class='sidebar-header'>
     <div class='logo flex'>
       <a href={translatePath('/')} class='logo-image' data-astro-prefetch>
-        <AstroLogo size={40} />
+        <img src={SITE.icon} alt={t('site.title')} width='40' height='40' class='site-avatar' />
       </a>
       <a href={translatePath('/')} data-astro-prefetch>
         <h1 class='text-gray-800 dark:text-gray-200'>{t('site.title')}</h1>
@@ -149,11 +149,14 @@ const sidebarSections = allPosts.reduce((sections, post, index) => {
     padding: 5px 11px;
     color: inherit;
     text-decoration: none;
-    display: block;
+    display: -webkit-box;
     transition: color 200ms ease;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    line-height: 1.35;
   }
 
   .nav-link a:hover,
@@ -187,8 +190,16 @@ const sidebarSections = allPosts.reduce((sections, post, index) => {
   }
 
   .logo .logo-image {
-    margin-top: -14px;
+    margin-top: -4px;
     margin-left: -4px;
+  }
+
+  .site-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    object-fit: cover;
+    display: block;
   }
 
   .logo a {
