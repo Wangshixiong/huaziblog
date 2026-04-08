@@ -11,6 +11,22 @@
 
 当前不是一个通用主题仓库，而是一个已经绑定个人内容和个人配置的博客项目。
 
+## 1.1 文档分工
+
+当前仓库文档分成三层：
+
+- `README.md`
+  仓库首页导航，只放最常用入口
+- `docs/PROJECT_GUIDE.md`
+  项目总说明，帮助理解整个项目结构和维护边界
+- `docs/WRITING_GUIDE.md`
+  日常发文手册，讲清楚如何新增、修改、检查和发布文章
+- `docs/DEPLOY_GUIDE.md`
+  部署手册，讲清楚 GitHub、Vercel、域名和评论系统相关操作
+
+如果只是想发一篇新文章，优先看 `WRITING_GUIDE.md`。  
+如果是要接 GitHub、Vercel、域名或评论，优先看 `DEPLOY_GUIDE.md`。
+
 ## 2. 当前技术结构
 
 ### 2.1 核心栈
@@ -95,6 +111,19 @@ npm run build
 ```bash
 npm run preview
 ```
+
+### 4.5 建议工作方式
+
+建议日常维护按下面顺序进行：
+
+1. 先 `git pull` 或确认本地代码是最新状态
+2. 新增或修改文章
+3. 本地执行 `npm run dev`
+4. 预览无误后执行 `npm run build`
+5. 提交 git
+6. 推送 GitHub
+
+这样可以把“内容问题”和“部署问题”分开，不容易混淆。
 
 ## 5. 如何新增文章
 
@@ -226,3 +255,8 @@ categories:
 4. 最后再重启英文版建设
 
 这样最稳，不会把内容维护、视觉修整、部署和翻译同时搅在一起。
+
+## 11. 对应手册
+
+- 发文细则见：`docs/WRITING_GUIDE.md`
+- 部署细则见：`docs/DEPLOY_GUIDE.md`

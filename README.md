@@ -6,6 +6,8 @@
 
 - 在线地址：[https://www.wenhuateng.top](https://www.wenhuateng.top)
 - 详细项目说明：[`docs/PROJECT_GUIDE.md`](docs/PROJECT_GUIDE.md)
+- 发文手册：[`docs/WRITING_GUIDE.md`](docs/WRITING_GUIDE.md)
+- 部署手册：[`docs/DEPLOY_GUIDE.md`](docs/DEPLOY_GUIDE.md)
 - 站点基础配置：`src/config.ts`
 - 中文文章目录：`src/pages/posts`
 - 关于页：`src/pages/about.astro`
@@ -24,6 +26,7 @@ npm run preview
 - 中文博客已完成迁移并可正常构建
 - 评论系统代码仍保留，但当前关闭
 - 英文内容目录仍保留框架，但正文翻译已暂停，未上线
+- 项目维护说明、发文手册、部署手册已拆分到 `docs/` 目录
 
 ## 维护建议
 
