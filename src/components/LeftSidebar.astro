@@ -149,14 +149,11 @@ const sidebarSections = allPosts.reduce((sections, post, index) => {
     padding: 5px 11px;
     color: inherit;
     text-decoration: none;
-    display: -webkit-box;
+    display: block;
     transition: color 200ms ease;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    line-height: 1.35;
+    white-space: nowrap;
   }
 
   .nav-link a:hover,
