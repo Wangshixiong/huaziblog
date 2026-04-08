@@ -8,7 +8,7 @@ import ReaderModeToggle from '../components/ReaderModeToggle.astro';
 import { SITE, GISCUS_CONFIG } from '@/config';
 import { SUPPORT_CALLOUT } from '@/supportCallout';
 import { parseTitle, sortPosts, getIndex, toNumericUrl, extractTitlePart, getSlugParts } from '@/util';
-import { getLangFromUrl, useTranslations, useLocalizedPath } from '../i18n/utils';
+import { getLangFromUrl, useLocalizedPath } from '../i18n/utils';
 
 export interface Props {
   frontmatter: {
@@ -34,7 +34,6 @@ const normalize = (path: string | undefined) => {
 const { date, image, description, url, socialImage, numericUrl, legacySlug, issueTitle, heroImage } = Astro.props.frontmatter;
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 const translatePath = useLocalizedPath(lang);
 
 const normalizedCurrent = normalize(currentPage) ?? currentPage;
@@ -75,11 +74,6 @@ const getGiscusTerm = () => {
 };
 
 const giscusTerm = getGiscusTerm();
-
-const cleanPath = effectivePath.startsWith('/en/') ? effectivePath.slice(3) : effectivePath;
-const zhPath = cleanPath;
-const enPath = `/en${cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath}`;
-const translationLabel = lang === 'en' ? '切换到中文' : 'Switch to English';
 
 const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
 ---
@@ -313,13 +307,6 @@ const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
           </span>
           <ReaderModeToggle />
           <Search />
-          <a
-            href={lang === 'en' ? zhPath : enPath}
-            class='lang-switch-wrapper flex items-center justify-center h-9 w-9 rounded-full ml-2 !bg-gray-100 dark:!bg-gray-800 text-sm font-medium transition-colors !text-gray-600 dark:!text-gray-400 hover:!text-gray-900 dark:hover:!text-gray-200 lang-switch-mobile-btn'
-            aria-label={translationLabel}
-          >
-            {lang === 'en' ? '中' : 'En'}
-          </a>
         </h1>
         <slot />
         <div class='flex align-middle justify-center mt-4 pay-button-wrapper'>

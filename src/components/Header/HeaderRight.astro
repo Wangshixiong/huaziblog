@@ -16,12 +16,4 @@ const t = useTranslations(lang);
   <HeaderLink href={lang === 'en' ? '/en/rss.xml' : '/rss.xml'} target='_blank' class='hidden md:inline-flex' title='RSS'>RSS</HeaderLink>
 
   <Search />
-  <a
-    href={lang === 'en' ? '/' : '/en'}
-    class='flex items-center justify-center h-9 w-9 rounded-full !bg-gray-100 dark:!bg-gray-800 text-sm font-medium transition-colors !text-gray-600 dark:!text-gray-400 hover:!text-gray-900 dark:hover:!text-gray-200'
-    aria-label={lang === 'en' ? 'Switch to Chinese' : 'Switch to English'}
-    style='text-decoration: none;'
-  >
-    {lang === 'en' ? '中' : 'En'}
-  </a>
 </div>
