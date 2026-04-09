@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header/Header.astro";
+import { SITE } from "@/config";
+---
+
+<BaseLayout title={`${SITE.title} | About`} description={SITE.description} pageURL={`${SITE.homePage}/en/about`}>
+  <Header />
+  <main class="mx-auto mb-16 xl:max-w-7xl w-full lg:max-w-5xl md:max-w-2xl max-w-xl box-border md:px-0 sm:px-3 px-4">
+    <article class="markdown-body heti bg-white/90 dark:bg-gray-900/70 rounded-2xl shadow-sm px-6 py-8 md:px-10 md:py-10 mt-4">
+      <h1>About Me</h1>
+      <p>Hello, I am <strong>Libu Shilang</strong>.</p>
+      <p>
+        I am an AI product manager who stays curious about both technology and human nature, and also the owner of the
+        WeChat public account "Yunjian Shuli".
+      </p>
+      <p>
+        I enjoy exploring how AI products are designed, implemented, and turned into real value, and I like documenting
+        the lessons and reflections that come from that work. I chose the name "Libu Shilang" because I want to approach
+        product management the way an ancient official might: carefully understanding needs, sorting through logic, and
+        seriously recording the digital changes of this era.
+      </p>
+      <blockquote>
+        <p>When in doubt, ask the spring breeze.</p>
+      </blockquote>
+      <h2>Find Me</h2>
+      <ul>
+        <li>
+          GitHub: <a href="https://github.com/Wangshixiong" target="_blank" rel="noreferrer">@Wangshixiong</a>
+        </li>
+        <li>WeChat public account: Yunjian Shuli</li>
+        <li>Personal WeChat: scan the QR code to add me, happy to connect</li>
+      </ul>
+      <p class="flex justify-center">
+        <img
+          src="https://wenhua-image.oss-cn-beijing.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/wechat2.jpg"
+          alt="WeChat QR code"
+          width="220"
+        />
+      </p>
+    </article>
+  </main>
+</BaseLayout>

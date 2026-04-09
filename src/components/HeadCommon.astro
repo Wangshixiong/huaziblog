@@ -18,3 +18,37 @@ const { icon } = SITE;
 
 <!-- Note: This CSS loads font subsets ONLY. The 8.6MB fallback has been removed for performance. -->
 <link rel='stylesheet' href='/fonts/jinkai.css' />
+
+<script is:inline>
+  (() => {
+    const storageKey = 'preferred-language';
+    const normalizePath = (path) => (path === '/' ? '/' : path.replace(/\/$/, ''));
+    const getCurrentLang = (path) => (path === '/en' || path.startsWith('/en/') ? 'en' : 'zh');
+    const toLangPath = (path, lang) => {
+      const normalizedPath = normalizePath(path);
+      const basePath = normalizedPath.replace(/^\/en(?=\/|$)/, '') || '/';
+      if (lang === 'zh') return basePath;
+      return basePath === '/' ? '/en' : `/en${basePath}`;
+    };
+
+    document.addEventListener('click', (event) => {
+      const target = event.target instanceof Element ? event.target.closest('[data-lang-switch]') : null;
+      if (!target) return;
+      const nextLang = target.getAttribute('data-lang-switch');
+      if (nextLang === 'zh' || nextLang === 'en') {
+        localStorage.setItem(storageKey, nextLang);
+      }
+    });
+
+    const currentPath = normalizePath(window.location.pathname);
+    const currentLang = getCurrentLang(currentPath);
+    const savedLang = localStorage.getItem(storageKey);
+    const browserLang = (navigator.languages?.[0] || navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'zh';
+    const preferredLang = savedLang === 'zh' || savedLang === 'en' ? savedLang : browserLang;
+    const targetPath = toLangPath(currentPath, preferredLang);
+
+    if (targetPath !== currentPath) {
+      window.location.replace(`${targetPath}${window.location.search}${window.location.hash}`);
+    }
+  })();
+</script>

@@ -25,3 +25,14 @@ export function useLocalizedPath(lang: keyof typeof ui) {
     return `${prefix}${normalizedPath}`.replace(/\/$/, "") || "/";
   };
 }
+
+export function getAlternateLangPath(path: string, targetLang: keyof typeof ui) {
+  const normalizedPath = path === "/" ? "/" : path.replace(/\/$/, "");
+  const basePath = normalizedPath.replace(/^\/en(?=\/|$)/, "") || "/";
+
+  if (targetLang === defaultLang) {
+    return basePath;
+  }
+
+  return basePath === "/" ? `/${targetLang}` : `/${targetLang}${basePath}`;
+}

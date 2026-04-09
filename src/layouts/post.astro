@@ -8,7 +8,7 @@ import ReaderModeToggle from '../components/ReaderModeToggle.astro';
 import { SITE, GISCUS_CONFIG } from '@/config';
 import { SUPPORT_CALLOUT } from '@/supportCallout';
 import { parseTitle, sortPosts, getIndex, toNumericUrl, extractTitlePart, getSlugParts } from '@/util';
-import { getLangFromUrl, useLocalizedPath } from '../i18n/utils';
+import { getLangFromUrl, useLocalizedPath, getAlternateLangPath } from '../i18n/utils';
 
 export interface Props {
   frontmatter: {
@@ -76,6 +76,8 @@ const getGiscusTerm = () => {
 const giscusTerm = getGiscusTerm();
 
 const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
+const nextLang = lang === 'en' ? 'zh' : 'en';
+const switchPath = getAlternateLangPath(Astro.url.pathname, nextLang);
 ---
 
 <BaseLayout title={`${SITE.title}${title}`} content={content} pageURL={currentUrl}>
@@ -307,6 +309,14 @@ const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
           </span>
           <ReaderModeToggle />
           <Search />
+          <a
+            href={switchPath}
+            data-lang-switch={nextLang}
+            class='lang-switch-wrapper flex items-center justify-center h-9 w-9 rounded-full ml-2 !bg-gray-100 dark:!bg-gray-800 text-sm font-medium transition-colors !text-gray-600 dark:!text-gray-400 hover:!text-gray-900 dark:hover:!text-gray-200 lang-switch-mobile-btn'
+            aria-label={lang === 'en' ? 'Switch to Chinese' : 'Switch to English'}
+          >
+            {lang === 'en' ? '中' : 'En'}
+          </a>
         </h1>
         <slot />
         <div class='flex align-middle justify-center mt-4 pay-button-wrapper'>
@@ -331,9 +341,9 @@ const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
             {nextUrl ? <a href={translatePath(nextUrl)}>{lang === 'en' ? 'Next' : '下一篇'} |</a> : null}
             {prevUrl ? <a href={translatePath(prevUrl)}>{lang === 'en' ? 'Prev' : '上一篇'} |</a> : null}
             <a href={translatePath('/')}>{lang === 'en' ? 'Home' : '去首页'} |</a>
-            <a href='/about'>{lang === 'en' ? 'About' : '关于我'}</a>
+            <a href={translatePath('/about')}>{lang === 'en' ? 'About' : '关于我'}</a>
             <a href={`https://github.com/${SITE.repo}`} title='Star' target='_blank' class='lg:inline-block hidden'> | Github</a>
-            <a href='/rss.xml' title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
+            <a href={translatePath('/rss.xml')} title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
           </div>
         </div>
       </div>
