@@ -49,3 +49,4 @@ journal/
 *.png
 *.html
 scripts/local-preview-proxy.cjs
+!public/images/*.png
