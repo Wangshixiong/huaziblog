@@ -24,7 +24,7 @@ const sidebarSections = allPosts.reduce((sections, post, index) => {
   const issueTitle = post.frontmatter?.issueTitle;
   const numericUrl = post.frontmatter?.numericUrl ?? toNumericUrl(post.url);
   const route = {
-    title: parseTitle(numericUrl, legacySlug, issueTitle, lang),
+    title: post.frontmatter?.title ?? parseTitle(numericUrl, legacySlug, issueTitle, lang, true),
     link: numericUrl.startsWith('/') ? numericUrl.slice(1) : numericUrl,
   };
   if (index === 0) {

@@ -12,6 +12,7 @@ import { getLangFromUrl, useLocalizedPath, getAlternateLangPath } from '../i18n/
 
 export interface Props {
   frontmatter: {
+    title?: string;
     date: string;
     image: string;
     description: string;
@@ -31,7 +32,7 @@ const normalize = (path: string | undefined) => {
   if (!path) return path;
   return path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path;
 };
-const { date, image, description, url, socialImage, numericUrl, legacySlug, issueTitle, heroImage } = Astro.props.frontmatter;
+const { date, image, description, url, socialImage, numericUrl, legacySlug, issueTitle, heroImage, title: frontmatterTitle } = Astro.props.frontmatter;
 
 const lang = getLangFromUrl(Astro.url);
 const translatePath = useLocalizedPath(lang);
@@ -40,12 +41,13 @@ const normalizedCurrent = normalize(currentPage) ?? currentPage;
 const normalizedNumeric = normalize(numericUrl);
 const effectivePath = normalizedNumeric ?? normalizedCurrent;
 let title = parseTitle(effectivePath, legacySlug, issueTitle, lang);
+if (frontmatterTitle) {
+  title = frontmatterTitle;
+}
 
 const { numberPart, name } = getSlugParts(legacySlug ?? extractTitlePart(effectivePath));
-const displayName = name || issueTitle || '';
+const displayName = frontmatterTitle || name || issueTitle || title;
 const displayTitle = lang === 'en' ? displayName.replace(/-/g, ' ') : displayName;
-const numberPrefix = lang === 'en' ? `${numberPart}.` : `第 ${numberPart} 期`;
-const titleSeparator = lang === 'en' ? ' ' : ' - ';
 
 // Check if current path is the legacy slug path (with hyphen and title)
 // If so, mark it to be ignored by Pagefind to avoid duplicate search results
@@ -80,7 +82,7 @@ const nextLang = lang === 'en' ? 'zh' : 'en';
 const switchPath = getAlternateLangPath(Astro.url.pathname, nextLang);
 ---
 
-<BaseLayout title={`${SITE.title}${title}`} content={content} pageURL={currentUrl}>
+<BaseLayout title={`${title} | ${SITE.title}`} content={content} pageURL={currentUrl}>
   <meta slot='head' data-pagefind-meta={`url:${currentUrl}`} />
   {heroImage && <link rel='preload' as='image' href={heroImage} slot='head' fetchpriority='high' />}
   <!-- Post-specific styles -->
@@ -305,7 +307,7 @@ const switchPath = getAlternateLangPath(Astro.url.pathname, nextLang);
             ><AstroLogo size={40} class='pswp-ignore' />
           </a>
           <span data-pagefind-meta='title' class='leading-tight flex-1 min-w-0 truncate'>
-            <span class='hidden md:inline'>{numberPrefix}{titleSeparator}</span>{displayTitle}
+            {displayTitle}
           </span>
           <ReaderModeToggle />
           <Search />
@@ -341,6 +343,7 @@ const switchPath = getAlternateLangPath(Astro.url.pathname, nextLang);
             {nextUrl ? <a href={translatePath(nextUrl)}>{lang === 'en' ? 'Next' : '下一篇'} |</a> : null}
             {prevUrl ? <a href={translatePath(prevUrl)}>{lang === 'en' ? 'Prev' : '上一篇'} |</a> : null}
             <a href={translatePath('/')}>{lang === 'en' ? 'Home' : '去首页'} |</a>
+            <a href={SITE.blogPage} target='_blank' rel='noreferrer'>{lang === 'en' ? 'Blog' : 'Blog'} |</a>
             <a href={translatePath('/about')}>{lang === 'en' ? 'About' : '关于我'}</a>
             <a href={`https://github.com/${SITE.repo}`} title='Star' target='_blank' class='lg:inline-block hidden'> | Github</a>
             <a href={translatePath('/rss.xml')} title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>

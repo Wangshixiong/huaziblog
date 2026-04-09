@@ -4,7 +4,7 @@ import HeaderLink from './HeaderLink.astro';
 import Search from './Search.astro';
 import { getLangFromUrl, useTranslations, useLocalizedPath, getAlternateLangPath } from '../../i18n/utils';
 
-const { githubId } = SITE;
+const { githubId, blogPage } = SITE;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useLocalizedPath(lang);
@@ -14,6 +14,7 @@ const switchPath = getAlternateLangPath(Astro.url.pathname, nextLang);
 
 <div class='flex-grow text-right flex items-center justify-end gap-4'>
   <HeaderLink href={translatePath('/')} class='hidden md:inline-flex'>{t('nav.home')}</HeaderLink>
+  <HeaderLink href={blogPage} target='_blank' class='hidden md:inline-flex'>{t('nav.blog')}</HeaderLink>
   <HeaderLink href={translatePath('/about')} class='hidden md:inline-flex'>{t('nav.about')}</HeaderLink>
   <HeaderLink href={`https://github.com/${githubId}`} target='_blank' class='hidden md:inline-flex'>{t('nav.github')}</HeaderLink>
   <HeaderLink href={translatePath('/rss.xml')} target='_blank' class='hidden md:inline-flex' title='RSS'>RSS</HeaderLink>

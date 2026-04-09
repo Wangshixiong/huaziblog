@@ -36,18 +36,19 @@ export const parseTitle = (
   const slug = legacySlug ?? extractTitlePart(currentPage);
   const { numberPart, name } = getSlugParts(slug);
   const displayName = name || fallbackName;
+  const cleanName = displayName.replace(/-/g, " ").trim();
 
-  if (lang === "en") {
-    if (isSidebar) {
-      return `${numberPart}.`;
-    }
-    const cleanName = displayName.replace(/-/g, " ");
-    return `${numberPart}.${cleanName ? ` ${cleanName}` : ""}`;
+  if (cleanName) {
+    return cleanName;
   }
 
-  let title = `第${numberPart}期`;
-  if (displayName) {
-    title += ` - ${displayName}`;
+  if (!numberPart) {
+    return lang === "en" ? "Untitled Note" : "未命名记录";
   }
-  return title;
+
+  if (isSidebar) {
+    return lang === "en" ? `Note ${numberPart}` : `记录 ${numberPart}`;
+  }
+
+  return lang === "en" ? `Note ${numberPart}` : `记录 ${numberPart}`;
 };
