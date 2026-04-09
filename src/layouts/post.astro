@@ -346,7 +346,6 @@ const switchPath = getAlternateLangPath(Astro.url.pathname, nextLang);
             <a href={SITE.blogPage} target='_blank' rel='noreferrer'>{lang === 'en' ? 'Blog' : 'Blog'} |</a>
             <a href={translatePath('/about')}>{lang === 'en' ? 'About' : '关于我'}</a>
             <a href={`https://github.com/${SITE.repo}`} title='Star' target='_blank' class='lg:inline-block hidden'> | Github</a>
-            <a href={translatePath('/rss.xml')} title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
           </div>
         </div>
       </div>

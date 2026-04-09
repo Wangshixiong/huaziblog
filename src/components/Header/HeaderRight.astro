@@ -17,7 +17,6 @@ const switchPath = getAlternateLangPath(Astro.url.pathname, nextLang);
   <HeaderLink href={blogPage} target='_blank' class='hidden md:inline-flex'>{t('nav.blog')}</HeaderLink>
   <HeaderLink href={translatePath('/about')} class='hidden md:inline-flex'>{t('nav.about')}</HeaderLink>
   <HeaderLink href={`https://github.com/${githubId}`} target='_blank' class='hidden md:inline-flex'>{t('nav.github')}</HeaderLink>
-  <HeaderLink href={translatePath('/rss.xml')} target='_blank' class='hidden md:inline-flex' title='RSS'>RSS</HeaderLink>
 
   <Search />
   <a
