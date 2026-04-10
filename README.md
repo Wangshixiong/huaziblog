@@ -1,35 +1,14 @@
-# 吏部侍郎
+# 华哥 Notes
 
-基于 `tw93/Weekly` 改造的个人博客，当前内容以中文为主，主题框架为 Astro。
+> 记录华哥的工具、链接、灵感和轻量分享。Blog 主站见 [qianshu.wang](https://www.qianshu.wang/)，项目维护说明见下方文档。
 
-## 快速入口
+- [2. 教员思想为什么适合武装 AI？我最近最想推荐的 Skill：求是](https://www.wenhuateng.top/posts/2)
+- [同时用 5 款 AI 编程 CLI？cc-switch 一站式管理](https://www.wenhuateng.top/posts/1)
 
-- 在线地址：[https://www.wenhuateng.top](https://www.wenhuateng.top)
-- 详细项目说明：[`docs/PROJECT_GUIDE.md`](docs/PROJECT_GUIDE.md)
-- 发文手册：[`docs/WRITING_GUIDE.md`](docs/WRITING_GUIDE.md)
-- 部署手册：[`docs/DEPLOY_GUIDE.md`](docs/DEPLOY_GUIDE.md)
-- 站点基础配置：`src/config.ts`
-- 中文文章目录：`src/pages/posts`
-- 关于页：`src/pages/about.astro`
+## 项目文档
 
-## 常用命令
+- [项目总说明](docs/PROJECT_GUIDE.md)
+- [发文手册](docs/WRITING_GUIDE.md)
+- [部署手册](docs/DEPLOY_GUIDE.md)
+- [Blog / Notes 拆分设计](docs/superpowers/specs/2026-04-09-blog-notes-split-design.md)
 
-```bash
-npm install
-npm run dev
-npm run build
-npm run preview
-```
-
-## 当前状态
-
-- 中文博客已完成迁移并可正常构建
-- 评论系统代码仍保留，但当前关闭
-- 英文内容目录仍保留框架，但正文翻译已暂停，未上线
-- 项目维护说明、发文手册、部署手册已拆分到 `docs/` 目录
-
-## 维护建议
-
-- 新文章优先直接写入 `src/pages/posts`
-- 站点信息统一修改 `src/config.ts`
-- 大改前先提交 git，避免把内容迁移和样式试验混在一起

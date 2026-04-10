@@ -1,262 +1,120 @@
-# 项目说明
+# 华哥 Notes 项目说明
 
 ## 1. 项目定位
 
-这个仓库是华哥个人博客的代码仓库，基于 `tw93/Weekly` 模板改造而来，当前目标是：
+这个仓库是华哥的 Notes 站代码仓库，不再承担长文博客职责。
 
-- 保留 Weekly 的排版和阅读体验
-- 使用 Astro 继续维护博客
-- 内容以中文为主
-- 部署目标是 `https://www.wenhuateng.top`
+- 站点地址：`https://www.wenhuateng.top`
+- Blog 主站：`https://www.qianshu.wang/`
+- GitHub 仓库：`git@github.com:Wangshixiong/huaziblog.git`
+- 部署平台：Vercel
 
-当前不是一个通用主题仓库，而是一个已经绑定个人内容和个人配置的博客项目。
+当前站点的职责是承接：
 
-## 1.1 文档分工
+- 工具推荐
+- 轻量分享
+- 灵感记录
+- 短评和随手记
 
-当前仓库文档分成三层：
+不再放系统性长文。长文继续留在 Hexo 博客。
+
+## 2. 文档分工
 
 - `README.md`
-  仓库首页导航，只放最常用入口
+  仓库首页展示，只放站点说明、近期内容和文档入口。
 - `docs/PROJECT_GUIDE.md`
-  项目总说明，帮助理解整个项目结构和维护边界
+  项目结构、定位、维护边界。
 - `docs/WRITING_GUIDE.md`
-  日常发文手册，讲清楚如何新增、修改、检查和发布文章
+  Notes 日常发文规范。
 - `docs/DEPLOY_GUIDE.md`
-  部署手册，讲清楚 GitHub、Vercel、域名和评论系统相关操作
+  Git、GitHub、Vercel、域名和发布流程。
 
-如果只是想发一篇新文章，优先看 `WRITING_GUIDE.md`。  
-如果是要接 GitHub、Vercel、域名或评论，优先看 `DEPLOY_GUIDE.md`。
-
-## 2. 当前技术结构
-
-### 2.1 核心栈
+## 3. 技术栈
 
 - 框架：Astro
-- 样式：Tailwind + 模板内原有样式
+- 样式：Tailwind CSS + 模板原有样式
 - 搜索：Pagefind
-- RSS：Astro RSS
-
-### 2.2 关键目录
-
-- `src/pages/posts`
-  中文文章目录，当前主内容都在这里
-- `src/pages/posts/[id].astro`
-  中文数字路由页，例如 `/posts/56`
-- `src/pages/about.astro`
-  关于页
-- `src/config.ts`
-  站点标题、作者、域名、仓库、评论配置
-- `src/i18n`
-  界面文案和多语言路径工具，不负责文章正文翻译
-- `public/images`
-  本地静态图片资源
-- `.migration-backup`
-  本轮迁移过程中的备份目录
-
-## 3. 当前内容状态
-
-### 3.1 已完成
-
-- Hexo 旧站中文文章已迁入
-- 关于页已迁入
-- 站点标题、头像、GitHub、域名等基础信息已替换
-- RSS 已改成当前站点信息
-- 评论区当前关闭，不会在页面显示
-
-### 3.2 暂未完成
-
-- 英文版未上线
-- 有部分文章封面仍使用迁移时的兜底图策略
-- 一些迁移调试目录仍残留在仓库根目录，属于非功能性清理项
-
-### 3.3 英文目录现状
-
-仓库里保留了英文结构：
-
-- `src/pages/en/index.astro`
-- `src/pages/en/rss.xml.js`
-- `src/pages/en/posts/[id].astro`
-
-但英文正文当前没有正式上线。之前尝试过批量翻译，结果质量不稳定，所以所有英文草稿都已移出正式目录，放入：
-
-- `.migration-backup/english-draft-20260408`
-- `.migration-backup/english-draft-rejected-20260408`
-
-## 4. 本地开发
-
-### 4.1 安装依赖
-
-```bash
-npm install
-```
-
-### 4.2 启动开发环境
-
-```bash
-npm run dev
-```
-
-默认本地访问地址通常是：
-
-- `http://127.0.0.1:4321`
-
-### 4.3 生产构建
-
-```bash
-npm run build
-```
-
-### 4.4 构建预览
-
-```bash
-npm run preview
-```
-
-### 4.5 建议工作方式
-
-建议日常维护按下面顺序进行：
-
-1. 先 `git pull` 或确认本地代码是最新状态
-2. 新增或修改文章
-3. 本地执行 `npm run dev`
-4. 预览无误后执行 `npm run build`
-5. 提交 git
-6. 推送 GitHub
-
-这样可以把“内容问题”和“部署问题”分开，不容易混淆。
-
-## 5. 如何新增文章
-
-新文章直接新建到：
-
-- `src/pages/posts`
-
-建议文件名格式：
-
-- `57-你的标题.md`
-
-建议 frontmatter 模板：
-
-```md
----
-date: 2026/04/08
-issueTitle: "这里写标题"
-description: "这里写摘要"
-image: "https://你的封面图地址"
-heroImage: "https://你的封面图地址"
-tags:
-  - "AI"
-  - "产品"
-categories:
-  - "博客"
----
-
-<img src="https://你的封面图地址" width="800" />
-
-正文从这里开始。
-```
+- 评论：Giscus 代码保留，当前关闭
+- 部署：Vercel 自动部署
 
 说明：
 
-- `issueTitle` 是文章标题
-- `description` 会用于首页摘要和 SEO 描述
-- `image` / `heroImage` 目前建议保持一致
-- 如果文章首图就是封面，正文顶部保留一张 `<img>` 最稳
+- RSS 已移除
+- 英文目录结构仍保留，但当前不是正式维护范围
 
-## 6. 发布流程
+## 4. 关键目录
 
-当前建议的发布流程：
-
-1. 在 `src/pages/posts` 新建或修改文章
-2. 本地执行 `npm run dev` 检查页面
-3. 执行 `npm run build` 确认可构建
-4. 提交 git
-5. 推送到 GitHub
-6. 再接 Vercel 自动部署
-
-当前这份文档只覆盖项目维护，不展开 Vercel 与域名接入细节。
-
-## 7. 关键配置项
-
-关键配置在：
-
+- `src/pages/posts`
+  当前正式 Notes 内容目录。
+- `src/pages/posts/[id].astro`
+  数字路由入口，支持类似 `/posts/1`。
+- `src/pages/about.astro`
+  关于页。
 - `src/config.ts`
+  站点标题、域名、GitHub 仓库、Blog 外链、评论配置。
+- `public/images`
+  本地静态图片资源。
+- `docs/archive/posts-2026-04-09`
+  从旧内容中备份出来、已下线的历史文章。
+- `docs/superpowers/specs`
+  已确认的设计文档。
 
-重点字段：
+## 5. 当前内容状态
 
-- `title`
-- `author`
-- `description`
-- `keywords`
-- `icon`
-- `siteImage`
-- `homePage`
-- `blogPage`
-- `githubId`
-- `repo`
+当前正式在线内容是 Notes，而不是 Blog。
 
-评论配置也在同文件：
+已完成：
 
-- `GISCUS_CONFIG`
+- 站点定位改为 Notes
+- 顶部导航可从 Notes 跳到 Blog
+- 历史旧文已从正式目录移出并归档
+- 导入了新的试水文章
+- RSS 页面和入口已删除
 
-当前评论是关闭状态，因为 `repo` 被设成了禁用占位值。
+当前正式文章目录中的内容：
 
-## 8. 迁移策略说明
+- `src/pages/posts/1-cc-switch.md`
+- `src/pages/posts/2-qiushi-skill.md`
 
-本项目是从 Hexo 内容迁到 Astro，不是把 Hexo 主题照搬过来。
+## 6. 维护原则
 
-迁移时采用了这些原则：
+这个仓库后面按下面原则维护：
 
-- 保内容，不保 Hexo 机制
-- 保 Weekly 外观，不重做主题
-- 优先让中文主站先稳定可用
-- 英文版后置
+- 放短内容，不放长文
+- 改站点信息优先看 `src/config.ts`
+- 调整导航先看 `src/components/Header`
+- 旧内容不要直接删，先归档到 `docs/archive/`
+- 发文和样式修改分开提交
 
-封面迁移策略是：
+## 7. Git 规范
 
-- 优先用 `cover`
-- 没有 `cover` 时尝试取正文首图
-- 如果仍然没有，则使用默认兜底图
+统一约定：
 
-这就是为什么当前有少数老文章封面观感还不够理想。
+- Git 远程仓库优先使用 SSH
+- 不使用 HTTPS 作为长期 remote 标准
 
-## 9. 已知问题
+当前仓库标准 remote 应该是：
 
-### 9.1 封面兜底
+```bash
+git@github.com:Wangshixiong/huaziblog.git
+```
 
-当前有少数旧文章没有合适封面，仍然使用默认兜底图，需要后续单独修。
+如果发现 remote 是 HTTPS，建议切回 SSH：
 
-### 9.2 OSS 防盗链
+```bash
+git remote set-url origin git@github.com:Wangshixiong/huaziblog.git
+```
 
-如果本地预览时远程图片不显示，首先检查阿里云 OSS 白名单 Referer 是否包含：
+## 8. 与 Blog 的关系
 
-- `http://127.0.0.1:4321/`
-- `http://127.0.0.1`
-- `http://localhost/`
-- `http://localhost:4321/`
+两套站点分工如下：
 
-而且要确认是对应的 bucket，都已经加了白名单。
+- `qianshu.wang`：Blog，放系统性长文
+- `wenhuateng.top`：Notes，放轻内容和随手记
 
-### 9.3 英文版
+当前只要求：
 
-英文结构文件仍在，但英文正文不应在未校对前直接上线。
+- Notes 能跳到 Blog
 
-### 9.4 根目录临时目录
+Blog 回链 Notes 可以后面再改，不依赖这个仓库。
 
-根目录仍残留若干 `.edge-*` 调试目录和个别日志文件，属于之前截图/预览排查过程留下的临时产物，需要后续继续清理。
-
-## 10. 后续建议
-
-建议按这个顺序继续维护：
-
-1. 先清理封面兜底问题
-2. 再补发文模板或自动化脚本
-3. 然后再做 Vercel 与域名正式接入
-4. 最后再重启英文版建设
-
-这样最稳，不会把内容维护、视觉修整、部署和翻译同时搅在一起。
-
-## 11. 对应手册
-
-- 发文细则见：`docs/WRITING_GUIDE.md`
-- 部署细则见：`docs/DEPLOY_GUIDE.md`
