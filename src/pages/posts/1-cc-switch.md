@@ -1,5 +1,5 @@
 ---
-title: 同时用5款AI编程CLI？cc-switch 一站式管理
+title: "1. 同时用5款AI编程CLI？cc-switch 一站式管理"
 date: "2026-04-02"
 description: 一款跨平台桌面工具，帮你统一管理 Claude Code、Codex、Gemini CLI 等多款 AI 编程 CLI 的 provider、MCP、skills 和历史记录。
 image: "https://wenhua-image.oss-cn-beijing.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/add-zh.webp"
